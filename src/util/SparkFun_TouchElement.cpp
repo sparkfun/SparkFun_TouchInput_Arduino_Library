@@ -95,9 +95,13 @@ void sfti_element_button::processRecord(sfti_record rec)
 
 
 // Handle
-sfti_element_handle::sfti_element_handle( void ) : sfti_element()
+sfti_element_handle::sfti_element_handle( sf2drt_polygon& basePoly ) : sfti_element()
 {
-
+isHeld = false;
+	
+	
+	
+	
 }
 
 void sfti_element_handle::processRecord(sfti_record rec)
