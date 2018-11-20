@@ -1,5 +1,39 @@
-#include "SparkFun_TouchInput.h"                  // This file includes the majority of what you need
-#include "SparkFun_TouchInput_Driver_FT5xx6.h"    // This file includes a specific TouchDriver (sfti_driver class) to use with the FT5xx6 hardware
+/*
+SparkFun Touch Input Arduino Library
+Example99 DemoCode
+
+This example demonstrates the SFTI library using the following hardware:
+Qwiic Capacitive Touchscreen 7in (FT5316)   - https://www.sparkfun.com/products/15104
+SmartLED Shield V4 for Teensy               - https://www.sparkfun.com/products/15046
+RGB Panel 32 x 64                           - https://www.sparkfun.com/products/14718
+A Teensy 3.2, 3.6, or 3.5 microcontroller
+
+Expected results:
+You will be able to interact with the RGB panel using the touchscreen in three ways:
+1. Any finger on the touchscreen will be highlighted by a small circle, color in chronological order
+2. You can change the blue square in the upper left corner to red by clicking on it
+3. You can drag around the large teal circle
+
+Hardware Hookup:
+1. Follow the SmartLED Shield V4 for Teensy hookup guide
+2. Connect the Qwiic Capacitive Touchscreen to the Teensy with a Qwiic Breadboard Cable (https://www.sparkfun.com/products/14425)
+3. Connect the interrupt pin on the touchscreen to pin 0 on the Teensy
+
+
+This code is open source. Please test it, tweak it, and learn from it or make it better!
+
+Author: Owen Lyke
+Date: Nov 20 2018
+
+*/
+
+
+
+
+
+
+#include "SparkFun_TouchInput.h"                  // Click here to get the library: http://librarymanager/All#SparkFun_TouchInput
+#include "SparkFun_TouchInput_Driver_FT5xx6.h"    // Click here to get the library: http://librarymanager/All#SparkFun_TouchInput_Driver_FT5xx6
 
 
 #include <SmartLEDShieldV4.h>  // uncomment this line for SmartLED Shield V4 (needs to be before #include <SmartMatrix3.h>)
