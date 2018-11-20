@@ -27,6 +27,8 @@ public:
 
 
 // Protected (one day)
+	void call(void (*func)( void ));	// A function to safely call void void callback functions
+
 	sfti_element* pprev;	// Pointer to the previous element in a linked list
 	sfti_element* pnext;	// Pointer to the next element in a linked list
 
@@ -51,7 +53,6 @@ public:
 // Private (one day)
 	
 // Protected (one day)
-	void call(void (*func)( void ));
 	void (*pressed)( void );
 	void (*released)( void );
 // Public
@@ -61,8 +62,8 @@ public:
 	void processRecord(sfti_record rec);	// This is the function that will be called when there is a new touch record. It is up to the derived classes how to handle this
 	
 	sfti_element_button(sf2drt_polygon& basepoly, void (*func_pressed)( void ) = NULL, void (*func_released)( void ) = NULL);
-	setPressedCallback(void (*func)( void ));
-	setReleasedCallback(void (*func)( void ));
+	void setPressedCallback(void (*func)( void ));
+	void setReleasedCallback(void (*func)( void ));
 };
 
 class sfti_element_handle : public sfti_element{
@@ -75,8 +76,22 @@ public:
 	sf2drt_polygon poly;	// The area of the handle
 	bool isHeld;
 
+	void (*pickedUp)( void );
+	void (*setDown)( void );
+	void (*moved)( void );
+
+	sfti_coord_t com;
+
 	void processRecord(sfti_record rec);	// This is the function that will be called when there is a new touch record. It is up to the derived classes how to handle this
-	sfti_element_handle();
+	sfti_element_handle( sf2drt_polygon& basePoly, void (*func_pickedup)( void ) = NULL, void (*func_setdown)( void ) = NULL,  void (*func_moved)( void ) = NULL);
+
+
+	void setPickedUpCallback(void (*func)( void ));
+	void setSetDownCallback(void (*func)( void ));
+	void setMovedCallback(void (*func)( void ));
+
+
+	bool get_nearest_coord( sfti_record rec, sf2drt_coordinate_t* pcoord );
 };
 
 class sfti_element_slider : public sfti_element{

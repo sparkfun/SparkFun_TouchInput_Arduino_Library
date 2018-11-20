@@ -79,7 +79,7 @@ void sfti_device::update( void )
 	// Check for touch data updates
 	if(pDriver->hasNewRecord())
 	{
-		sfti_record rec = pDriver->getLastRecord();
+		record = pDriver->getLastRecord();
 
 		// Process touch data with all the elements
 		if(pFirstE != NULL)
@@ -87,7 +87,7 @@ void sfti_device::update( void )
 			sfti_element* ptemp = pFirstE;
 
 			do{
-				ptemp->processRecord(rec);
+				ptemp->processRecord(record);
 				ptemp = ptemp->pnext;
 			}while(ptemp != NULL);
 		}

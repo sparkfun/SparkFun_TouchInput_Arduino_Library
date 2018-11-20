@@ -32,6 +32,8 @@ protected:
 public:
 // Private (one day)
 	
+	sfti_record record;
+
 	sfti_element* pFirstE;		// Pointer to the first element
 	sfti_driver* pDriver;		// Pointer to the driver for the device
 	bool valid;					// If the device has been configured to a satisfactory level or not

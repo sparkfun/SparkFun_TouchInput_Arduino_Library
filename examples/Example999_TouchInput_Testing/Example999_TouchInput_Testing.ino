@@ -21,14 +21,33 @@ sfti_device myDevice;
 
 
 // Create the elements that you want to interact with on the touch panel
-sf2drt_coordinate_t buttonCoords[] = {{10,10}, {10, 110}, {110,110}, {110, 10}};
+
+
+sf2drt_coordinate_t buttonCoords[] = {{10,10}, {10, 110}, {110,110}, {110, 10}};              // Create coordinates for a polygon button
 sf2drt_polygon buttonPolygon(4, buttonCoords);                                                // Create a polygn to represent the button
 void buttonPressedCallback( void ){ SERIAL_PORT.println("Button pressed!"); }                 // 
 void buttonReleasedCallback( void ){ SERIAL_PORT.println("Button released!"); }
 sfti_element_button myButton(buttonPolygon, buttonPressedCallback, buttonReleasedCallback);   // Buttons can be pressed and released
 
 
-sfti_element_handle myHandle;                                               // Handles can be picked up and dragged to a new location
+sf2drt_coordinate_t handleCoords[] = {{350,150}, {350, 250}, {450,250}, {450, 150}};          // Create coordinates for a polygon button
+sf2drt_polygon handlePolygon(4, handleCoords);      
+void handlePickedUpCallback( void ){ SERIAL_PORT.println("Handle picked up!"); }
+void handleSetDownCallback( void ){ SERIAL_PORT.println("Handle set down!"); }
+void handleMovedCallback( void )
+{ 
+  extern sfti_element_handle myHandle;
+  SERIAL_PORT.print("Handle moved! {"); 
+  SERIAL_PORT.print(myHandle.com.x);
+  SERIAL_PORT.print(", ");
+  SERIAL_PORT.print(myHandle.com.y);
+  SERIAL_PORT.print("}");
+  SERIAL_PORT.println();
+}
+sfti_element_handle myHandle(handlePolygon, handlePickedUpCallback, handleSetDownCallback, handleMovedCallback); // Handles can be picked up and dragged to a new location
+
+
+
 sfti_element_slider mySlider;                                               // Sliders are handles that are contrained to a particular path and report their progress along that path
 sfti_element_debugger myDebugger((HardwareSerial*)&SERIAL_PORT);            // The debugger responds to records by simply printing their information
                                                                             // The casting here could have severe consequences if not done correctly (and with caution) - If you're wondering why it is here, that's to make the Teensy3.6's usbserial class object work here
@@ -58,16 +77,15 @@ void setup() {
   myDevice.linkDriver(&myDriver);
 
   // Add the elements you created to the device
+//  myDevice.addElement(&myDebugger); 
   myDevice.addElement(&myButton);
-  myDevice.addElement(&mySlider);
-  myDevice.addElement(&myDebugger);
-
-
-  // Setup the callbacks for the button
-  
+  myDevice.addElement(&myHandle);
+//  myDevice.addElement(&mySlider); // So far slider is not implemented, but it will effectively be a handle constrained to a path that reports its progress along that path
+   
 }
 
 void loop() {
   // put your main code here, to run repeatedly:
   myDevice.update();
+  
 }

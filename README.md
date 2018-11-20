@@ -1,7 +1,7 @@
-HyperDisplay Arduino Library
+SparkFun TouchInput Arduino Library
 ========================================
 
-Providing uniform drawing and printing functions for a wide range of displays in the Arduino environment
+This library provides common ways to handle user input from touch panels/screens. Create a touch input "device" as a combination of a hardware driver and "elements" like buttons, handles, and sliders. Create custom elements to interact with such as dials, gestures, and more.
 
 
 Repository Contents
@@ -19,11 +19,11 @@ Documentation
 
 Products that use this Library 
 ---------------------------------
-
+* [Qwiic Capacitive Touchscreen - 7in](https://www.sparkfun.com/products/15104)
 
 Version History
 ---------------
-
+* 1.0.0 - Initial release
 
 License Information
 -------------------

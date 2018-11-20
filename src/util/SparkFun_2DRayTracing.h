@@ -16,8 +16,8 @@ Author: Owen Lyke
 
 // This section allows you to easily reconfigure the types used in this header file
 typedef uint16_t 	sf2drt_max_qty_t;
-typedef uint16_t 	sf2drt_extent_t;		
-typedef int32_t		sf2drt_diff_t;
+typedef double 		sf2drt_extent_t;		
+typedef double		sf2drt_diff_t;
 typedef double		sf2drt_rotation_t;
 
 
@@ -206,6 +206,21 @@ public:
 	{
 		// Return the "center of mass" of the polygon (average location of all vertices, actually)
 		sf2drt_coordinate_t retval = {0,0};
+
+		double avgX = 0;
+		double avgY = 0;
+
+		for(sf2drt_max_qty_t indi = 0; indi < _num_sides; indi++)
+		{
+			avgX += (double)(_p_points + indi)->x;
+			avgY += (double)(_p_points + indi)->y;
+		}
+
+		avgX /= (double)_num_sides;
+		avgY /= (double)_num_sides;
+
+		retval.x = (sf2drt_extent_t)round(avgX);
+		retval.y = (sf2drt_extent_t)round(avgY);
 
 		return retval;
 	}
