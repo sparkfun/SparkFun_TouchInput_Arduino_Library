@@ -2,6 +2,8 @@
 SparkFun Touch Input Arduino Library
 Example99 DemoCode
 
+NOTE: This example is specific to the Teensy and will probably not compile on other platforms
+
 This example demonstrates the SFTI library using the following hardware:
 Qwiic Capacitive Touchscreen 7in (FT5316)   - https://www.sparkfun.com/products/15104
 SmartLED Shield V4 for Teensy               - https://www.sparkfun.com/products/15046
@@ -73,7 +75,7 @@ void buttonReleasedCallback( void ){ SERIAL_PORT.println("Button released!"); }
 sfti_element_button myButton(buttonPolygon, buttonPressedCallback, buttonReleasedCallback);   // Buttons can be pressed and released
 
 
-sf2drt_coordinate_t handleCoords[] = {{300,100}, {300, 300}, {500,200}, {500, 100}};          // Create coordinates for a polygon button
+sf2drt_coordinate_t handleCoords[] = {{300,100}, {300, 300}, {500,300}, {500, 100}};          // Create coordinates for a polygon button
 sf2drt_polygon handlePolygon(4, handleCoords);      
 void handlePickedUpCallback( void ){ SERIAL_PORT.println("Handle picked up!"); }
 void handleSetDownCallback( void ){ SERIAL_PORT.println("Handle set down!"); }
@@ -100,6 +102,8 @@ sfti_element_debugger myDebugger((HardwareSerial*)&SERIAL_PORT);            // T
 ////////////////////////////////////////////////////////
 // RGB Panel Items
 ///////////////////////////////////////////////////////
+
+// Get the SmartLEDShield library from GitHub Here: https://github.com/pixelmatix/SmartMatrix
 
 #include <SmartLEDShieldV4.h>  // uncomment this line for SmartLED Shield V4 (needs to be before #include <SmartMatrix3.h>)
 #include <SmartMatrix3.h>
